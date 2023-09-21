@@ -5,5 +5,5 @@ import pytest
 
 @pytest.fixture()
 def setup():
-    driver = webdriver.Chrome("D:\\Python\\GitHub\\UI_Automation\\chromedriver")
+    driver = webdriver.Chrome("D:\\Python\\GitHub\\UI_Automation\\chromedriver_117.0.5938.89")
     return driver
