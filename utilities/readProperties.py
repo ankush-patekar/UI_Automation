@@ -3,7 +3,7 @@ import configparser
 confprsr = configparser.RawConfigParser()
 confprsr.read("D:\\Python\\GitHub\\UI_Automation\\Configurations\\config.ini")
 
-class readConfig():
+class ReadConfig():
 
     @staticmethod
     def getApplicationUrl():

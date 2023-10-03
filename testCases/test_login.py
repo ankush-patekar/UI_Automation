@@ -1,42 +1,54 @@
 import pytest
 from selenium import webdriver
 from pageObjects.loginPage import LoginPage
-from utilities.readProperties import readConfig
-import datetime
+from utilities.readProperties import ReadConfig
+from utilities.customLogger import LogGen
 import pdb
 
-
-class Test_001_Login():
+class Test_001_Login:
+    baseURL = ReadConfig.getApplicationUrl()
+    username = ReadConfig.getUserName()
+    password = ReadConfig.getPassword()
     # pdb.set_trace()
-    url = readConfig.getApplicationUrl()
-    username = readConfig.getUserName()
-    password = readConfig.getPassword()
-    # timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    logger = LogGen.loggen()
 
-    # def test_homepagetitle(self, setup):
-    #     self.driver = setup
-    #     self.driver.get(self.url)
-    #     expected_title = "Your store. Login"
-    #     actual_title = self.driver.title
-    #     assert actual_title == expected_title
-    #     self.driver.close()
-
-    def test_login(self, setup):
+    @pytest.mark.sanity
+    def test_homePageTitle(self, setup):
+        # self.logger = LogGen.loggen()
+        self.logger.info("*************** Test_001_Login *****************")
+        self.logger.info("****Started Home page title test ****")
         self.driver = setup
-        self.driver.get(self.url)
-        self.lp = LoginPage(self.driver)
+        self.logger.info("****Opening URL****")
+        self.driver.get(self.baseURL)
+        act_title = self.driver.title
+
+        if act_title == "Your store. Login":
+            self.logger.info("**** Home page title test passed ****")
+            self.driver.close()
+            assert True
+        else:
+            self.logger.error("**** Home page title test failed****")
+            self.driver.save_screenshot("D:\\Python\\GitHub\\UI_Automation\\Screenshots\\"+"test_homePageTitle.png")
+            self.driver.close()
+            assert False
+
+    @pytest.mark.regression
+    def test_login(self, setup):
+
+        self.logger.info("****Started Login Test****")
+        self.driver = setup
+        self.driver.get(self.baseURL)
+        self.lp=LoginPage(self.driver)
         self.lp.setUserName(self.username)
         self.lp.setpassword(self.password)
         self.lp.clicklogin()
-        # expected_title = "Dashboard / nopCommerce administration"
-        actual_title = self.driver.title
-        if actual_title == "Dashboard / nopCommerce administration":
-            assert True
+        act_title = self.driver.title
+        if act_title == "Dashboard / nopCommerce administration":
+            self.logger.info("****Login test passed ****")
             self.driver.close()
+            assert True
         else:
+            self.logger.error("****Login test failed ****")
             self.driver.save_screenshot("D:\\Python\\GitHub\\UI_Automation\\Screenshots\\" + "test_login.png")
-            # self.driver.close()
+            self.driver.close()
             assert False
-
-
-
