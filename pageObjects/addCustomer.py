@@ -7,7 +7,8 @@ from selenium.webdriver.support.ui import Select
 class AddCustomer:
 
     lnkCustomers_menu_css = ".has-treeview:nth-child(4) > .nav-link > p"
-    lnkCustomers_menuitem_css = ".menu-is-opening .nav-item:nth-child(1) p"
+    # lnkCustomers_menuitem_css = ".menu-is-opening .nav-item:nth-child(1) p"
+    lnkCustomers_menuitem_xpath ='/html/body/div[3]/aside/div/div[4]/div/div/nav/ul/li[4]/ul/li[1]/a/p'
     btnAddnew_linktxt = "Add new"
     txtEmail_id = "Email"
     txtPassword_id = "password"
@@ -37,7 +38,7 @@ class AddCustomer:
         self.driver.find_element(By.CSS_SELECTOR, self.lnkCustomers_menu_css).click()
 
     def clickOnCustomersMenuItem(self):
-        self.driver.find_element(By.CSS_SELECTOR, self.lnkCustomers_menuitem_css).click()
+        self.driver.find_element(By.XPATH, self.lnkCustomers_menuitem_xpath).click()
 
     def clickOnAddnew(self):
         self.driver.find_element(By.LINK_TEXT, self.btnAddnew_linktxt).click()
