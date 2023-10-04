@@ -9,26 +9,26 @@ from pytest_metadata.plugin import metadata_key
 @pytest.fixture()
 def setup(browser):
     if browser == 'chrome':
-        # driver = webdriver.Chrome("D:\\Python\\GitHub\\UI_Automation\\chromedriver_117.0.5938.89")
+        driver = webdriver.Chrome("D:\\Python\\GitHub\\UI_Automation\\chromedriver_117.0.5938.89")
         '''
         webdriver kept at Python installed location(C:\sers\ankush.patekar\AppData\Local\Programs\Python\Python310\Scripts)
         So no need to give executable path
         '''
-        driver = webdriver.Chrome()
+        # driver = webdriver.Chrome()
     elif browser == 'firefox':
-        # pro_path = "C:\\Users\\ankush.patekar\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\qfdwn80q.default"
-        # options = Options()
-        # options.set_preference('profile', pro_path)
-        # service = Service("D:\\Python\\GitHub\\UI_Automation\\geckodriver")
-        # driver = Firefox(service=service, options=options)
+        pro_path = "C:\\Users\\ankush.patekar\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\qfdwn80q.default"
+        options = Options()
+        options.set_preference('profile', pro_path)
+        service = Service("D:\\Python\\GitHub\\UI_Automation\\geckodriver")
+        driver = Firefox(service=service, options=options)
         '''
          webdriver kept at Python installed location(C:\sers\ankush.patekar\AppData\Local\Programs\Python\Python310\Scripts)
         So no need to give executable path
         '''
-        driver = webdriver.Firefox()
+        # driver = webdriver.Firefox()
     else:
-        # driver = webdriver.Edge("D:\\Python\\GitHub\\UI_Automation\\msedgedriver")
-        driver = webdriver.Edge()
+        driver = webdriver.Edge("D:\\Python\\GitHub\\UI_Automation\\msedgedriver")
+        # driver = webdriver.Edge()
     return driver
 
 
